@@ -27,6 +27,8 @@ class QuizPage extends StatefulWidget {
     'A slug\'s blood is green.',
   ];
 
+  List<bool> answers = [false, true, true];
+
   int questionNumber = 0;
 
   @override
@@ -67,6 +69,13 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
+                  bool correctAnswer = widget.answers[widget.questionNumber];
+
+                  if (correctAnswer == true) {
+                    print('The user got it right!');
+                  } else {
+                    print('The user got it wrong');
+                  }
                   widget.questionNumber++;
                 });
               },
@@ -87,6 +96,13 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
+                  bool correctAnswer = widget.answers[widget.questionNumber];
+
+                  if (correctAnswer == false) {
+                    print('The user got it right!');
+                  } else {
+                    print('The user got it wrong');
+                  }
                   widget.questionNumber++;
                 });
               },
