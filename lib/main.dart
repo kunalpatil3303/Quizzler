@@ -38,8 +38,6 @@ class QuizPage extends StatefulWidget {
   //   a: false,
   // );
 
-  int questionNumber = 0;
-
   @override
   _QuizPageState createState() => _QuizPageState();
 }
@@ -57,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizbrain.QuestionBank[widget.questionNumber].q,
+                quizbrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25.0, color: Colors.white),
               ),
@@ -77,16 +75,16 @@ class _QuizPageState extends State<QuizPage> {
                 style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
               onPressed: () {
-                setState(() {
-                  bool correctAnswer =
-                      quizbrain.QuestionBank[widget.questionNumber].a;
+                bool correctAnswer = quizbrain.getCorrectAnswer();
 
-                  if (correctAnswer == true) {
-                    print('The user got it right!');
-                  } else {
-                    print('The user got it wrong');
-                  }
-                  widget.questionNumber++;
+                if (correctAnswer == true) {
+                  print('The user got it right!');
+                } else {
+                  print('The user got it wrong');
+                }
+
+                setState(() {
+                  quizbrain.nextQuestion();
                 });
               },
             ),
@@ -105,16 +103,16 @@ class _QuizPageState extends State<QuizPage> {
                 style: TextStyle(fontSize: 20.0, color: Colors.white),
               ),
               onPressed: () {
-                setState(() {
-                  bool correctAnswer =
-                      quizbrain.QuestionBank[widget.questionNumber].a;
+                bool correctAnswer = quizbrain.getCorrectAnswer();
 
-                  if (correctAnswer == false) {
-                    print('The user got it right!');
-                  } else {
-                    print('The user got it wrong');
-                  }
-                  widget.questionNumber++;
+                if (correctAnswer == true) {
+                  print('The user got it right!');
+                } else {
+                  print('The user got it wrong');
+                }
+
+                setState(() {
+                  quizbrain.nextQuestion();
                 });
               },
             ),
